@@ -75,7 +75,11 @@
         // add "IS SELECTED" column
         NSTableColumn *column = [[NSTableColumn alloc] initWithIdentifier:[NSTableColumn identifierOfIsSelectedTableColumn_cde]];
         [[column headerCell] setTitle:@"✓"];
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_11
+        [[column headerCell] setAlignment:NSTextAlignmentCenter];
+#else
         [[column headerCell] setAlignment:NSCenterTextAlignment];
+#endif
         [column setMinWidth:20.0];
         [column setMaxWidth:20.0];
         [column sizeToFit];

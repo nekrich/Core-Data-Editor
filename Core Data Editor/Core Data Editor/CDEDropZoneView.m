@@ -55,8 +55,12 @@
    
    NSMutableParagraphStyle *titleParagraphStyle = [[NSMutableParagraphStyle alloc] init];
    [titleParagraphStyle setParagraphStyle:[NSParagraphStyle defaultParagraphStyle]];
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_11
+   titleParagraphStyle.alignment = NSTextAlignmentCenter;
+#else
    titleParagraphStyle.alignment = NSCenterTextAlignment;
-   
+#endif
+  
     NSShadow *shadow = [NSShadow new];
 	[shadow setShadowColor:[NSColor whiteColor]];
 	[shadow setShadowBlurRadius:1.0f];

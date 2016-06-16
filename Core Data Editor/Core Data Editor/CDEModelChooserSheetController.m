@@ -54,7 +54,11 @@
       return;
    }
    self.completionHandler = handler;
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_9
+   [parentWindow beginSheet:self.window completionHandler:nil];
+#else
    [NSApp beginSheet:self.window modalForWindow:parentWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
+#endif
 }
 
 #pragma mark NSTableViewDelegate

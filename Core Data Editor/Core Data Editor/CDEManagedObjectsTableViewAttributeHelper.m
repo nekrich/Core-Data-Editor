@@ -45,7 +45,11 @@
     if([attributeDescription attributeType] == NSBooleanAttributeType) {
         NSButtonCell *booleanDataCell = [[NSButtonCell alloc] initTextCell:[NSString string]];
         [booleanDataCell setButtonType:NSSwitchButton];
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_11
+        [booleanDataCell setAlignment:NSTextAlignmentCenter];
+#else
         [booleanDataCell setAlignment:NSCenterTextAlignment];
+#endif
         [booleanDataCell setImagePosition:NSImageOnly];
         [result setDataCell:booleanDataCell];
     }

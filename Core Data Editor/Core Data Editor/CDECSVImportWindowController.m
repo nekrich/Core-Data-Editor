@@ -252,7 +252,15 @@ NSString *const CDECSVImportWindowControllerMappingIndexOfSelectedColumn = @"ind
     // Entities Popup Button: End
     [self updateMappingsArrayController];
     
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_9
+    [parentWindow
+     beginSheet:self.window
+     completionHandler:^(NSModalResponse returnCode) {
+       [self importWindowDidEnd:self.window returnCode:returnCode contextInfo:nil];
+     }];
+#else
     [NSApp beginSheet:self.window modalForWindow:parentWindow modalDelegate:self didEndSelector:@selector(importWindowDidEnd:returnCode:contextInfo:) contextInfo:NULL];
+#endif
     [self showOpenCSVFilePanel:self];
 }
      

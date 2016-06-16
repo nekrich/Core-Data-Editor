@@ -22,7 +22,8 @@
 #import "NSTableColumn+CDERequestDataCoordinator.h"
 #import "CDETextEditorController.h"
 
-@interface CDERequestDataCoordinator () <NSTextFieldDelegate, CDEDatePickerWindowDelegate>
+@interface CDERequestDataCoordinator () <NSTextFieldDelegate, CDEDatePickerWindowDelegate, NSSearchFieldDelegate>
+
 
 #pragma mark - Properties
 @property (nonatomic, strong, readwrite) CDEManagedObjectsRequest *request;

@@ -188,7 +188,11 @@
     [self showDropApplicationView];
     self.editing = NO;
     
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_9
+    [parentWindow beginSheet:self.window completionHandler:nil];
+#else
     [NSApp beginSheet:self.window modalForWindow:parentWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
+#endif
 }
 
 - (void)beginSheetModalForWindow:(NSWindow *)parentWindow applicationBundleURL:(NSURL *)applicationBundleURL storeURL:(NSURL *)storeURL modelURL:(NSURL *)modelURL completionHandler:(CDEConfigurationWizzardCompletionHandler)handler {
@@ -202,7 +206,11 @@
     
     self.editing = YES;
     
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_9
+    [parentWindow beginSheet:self.window completionHandler:nil];
+#else
     [NSApp beginSheet:self.window modalForWindow:parentWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
+#endif
 }
 
 #pragma mark Actions

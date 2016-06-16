@@ -61,7 +61,11 @@
         // Add one more column (the order column)
         NSTableColumn *orderIndexColumn = [[NSTableColumn alloc] initWithIdentifier:@"CDE_orderIndexColumn"];
         [[orderIndexColumn headerCell] setTitle:@"#"];
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_11
+        [[orderIndexColumn headerCell] setAlignment:NSTextAlignmentCenter];
+#else
         [[orderIndexColumn headerCell] setAlignment:NSCenterTextAlignment];
+#endif
         [orderIndexColumn setMinWidth:50.0];
         [orderIndexColumn setWidth:50.0];
         

@@ -30,11 +30,19 @@
     self.windowController = [[CDEAttributeEditorWindowController alloc] initWithManagedObject:managedObject attributeDescription:attributeDescription];
     [self.windowController window];
     
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_9
+  [positioningView.window
+   beginSheet:self.windowController.window
+   completionHandler:^(NSModalResponse returnCode) {
+     [self sheetDidEnd:self.windowController.window returnCode:returnCode contextInfo:nil];
+  }];
+#else
     [NSApp beginSheet:self.windowController.window
        modalForWindow:positioningView.window
         modalDelegate:self
        didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:)
           contextInfo:NULL];
+#endif
 }
 
 - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {

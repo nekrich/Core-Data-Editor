@@ -24,7 +24,11 @@
     self.popover = [NSPopover new];
     self.popover.animates = NO; // animates => performance problems
     [self.popover setContentViewController:self.menuViewController];
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_10
     [self.popover setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
+#else
+    [self.popover setAppearance:NSPopoverAppearanceMinimal];
+#endif
     [self.popover setBehavior:NSPopoverBehaviorTransient];
   }
   return self;
